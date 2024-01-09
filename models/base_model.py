@@ -2,6 +2,7 @@
 """ Base model for all instanes of objects """
 import uuid
 import datetime
+from models import storage
 
 
 class BaseModel:
@@ -23,6 +24,7 @@ class BaseModel:
     def save(self):
         """ Public instance method to update attribute updated_at with current datetime"""
         self.updated_at = datetime.datetime.now().isoformat()
+        storage.save()
 
     def to_dict(self):
         """
@@ -48,3 +50,4 @@ class BaseModel:
             #super().__init__(*args)
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now().isoformat()
+            storage.new()
