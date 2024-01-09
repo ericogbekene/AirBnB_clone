@@ -50,4 +50,4 @@ class BaseModel:
             #super().__init__(*args)
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now().isoformat()
-            storage.new()
+            storage.new(self)
