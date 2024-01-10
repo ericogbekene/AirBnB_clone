@@ -2,7 +2,7 @@
 """ Module to create a persistent file storage system"""
 
 
-#from models.base_model import BaseModel
+#import models.base_model import BaseModel
 import datetime
 import json
 import uuid
@@ -42,6 +42,8 @@ class FileStorage:
                 data = json.load(file)
                 for key, value in data.items():
                     class_name, obj_id = key.split('.')
+                    """ import Base Model here"""
+                    from models.base_model import BaseModel
                     obj_instance = eval(class_name)(**value)
                     self.__objects[key] = obj_instance
             return self.__objects
