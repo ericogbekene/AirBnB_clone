@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ Base model for all instanes of objects """
-import uuid
 import datetime
 from models import storage
+import uuid
 
 
 class BaseModel:
