@@ -1,6 +1,6 @@
 # AirBnB clone - The console
 
-![AirBnB](docs/static_files/65f4a1dd9c51265f49d0.png"AirBnB The Console")
+![AirBnB](docs/static_files/65f4a1dd9c51265f49d0.png "AirBnB The Console")
 
 ## Welcome to our AirBnB clone project in partial fulfillment of the requirements of alx
 Please read the [AirBnB concept page](https://intranet.alxswe.com/concepts/66) to better understand what this project intends to do
