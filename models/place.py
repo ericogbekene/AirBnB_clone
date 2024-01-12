@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ Defines a Place Class"""
 
-from models.base_module import BaseModel
+from models.base_model import BaseModel
 
 class Place(BaseModel):
-	"""Defines class for Place
+    """Defines class for Place
 
     Attributes:
         city_id (str): The id of the city.

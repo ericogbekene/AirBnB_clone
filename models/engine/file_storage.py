@@ -42,8 +42,17 @@ class FileStorage:
                 data = json.load(file)
                 for key, value in data.items():
                     class_name, obj_id = key.split('.')
-                    """ import Base Model here"""
+                    """ import Base Model here """
                     from models.base_model import BaseModel
+                    """
+                    from models.amenity import Amenity
+                    from models.city import City
+                    from models.place import Place
+                    from models.review import Review
+                    from models.state import State
+                    """
+                    from models.user import User
+                    """imports done"""
                     obj_instance = eval(class_name)(**value)
                     self.__objects[key] = obj_instance
             return self.__objects
