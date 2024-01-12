@@ -75,6 +75,45 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print('** class name missing **')
+            
+    def do_destroy(self, line):
+        """ Method to destroy a class based on ID"""
+        args = line.split()
+        if len(args) > 0:
+            if args[0] in self.class_dict.keys():
+                if len(args) == 2 and args[1]:
+                    idNum = args[1]
+                    for key, value in storage.all().items():
+                        id_split = key.split('.')
+                        if idNum == id_split[1]:
+                            del value
+                            storage.save()
+                            return
+                    print('** no instance found **')
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** class doesn't exist **")
+        else:
+            print('** class name missing **')
+        
+    def do_all(self, line):
+        """ return a print of dictionary representation of all objects"""
+        if not line:
+            for key, value in storage.all().items():
+                print(str(value))
+        else:
+            args = line.split()
+            if args[0] not in self.class_dict.keys():
+                print("** class doesn't exist **")
+                return
+            list_output = []
+            """ Create an empty List to hold all strings of BaseModel"""
+            for key, value in storage.all().items():
+                list_output.append(str(value))
+            print(list_output)
+            
+        
 
 
 
