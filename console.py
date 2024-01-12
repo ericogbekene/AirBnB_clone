@@ -31,11 +31,7 @@ class HBNBCommand(cmd.Cmd):
     
     def do_create(self, line):
         """ Create a new object by type and name """
-        print("CREATE")
         args = line.split(' ')
-        for i in args:
-            print('arg is -> {}'.format(i))
-        print('{}'.format(args))
         if len(args) == 0:
             print("** class name missing **")
         else:
@@ -43,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
             if objType in self.class_dict.keys():
                 new_instance = self.class_dict[objType]()
                 #new_object = objType()
-                print('{}'.format(new_instance))
+                print('{}'.format(new_instance.id))
                 new_instance.save()
             else:
                 print("** class doesn't exist **")
