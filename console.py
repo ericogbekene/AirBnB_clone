@@ -4,7 +4,7 @@
 
 import cmd
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """ class to enter cmd console """
@@ -12,8 +12,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
 
     class_dict = {
-    'BaseModel': BaseModel,
-    'FileStorage' : FileStorage
+    'BaseModel': BaseModel
 }
 
 
@@ -37,27 +36,37 @@ class HBNBCommand(cmd.Cmd):
         for i in args:
             print('arg is -> {}'.format(i))
         print('{}'.format(args))
-        if args is None:
+        if len(args) == 0:
             print("** class name missing **")
-        elif len(args) == 2:
+        else:
             objType = args[0]
             if objType in self.class_dict.keys():
                 new_instance = self.class_dict[objType]()
-            #new_object = objType()
-            #print("Creating %s named '%s'..." % (objType, objName))
-            print('{}'.format(new_instance.id))
-            new_instance.save()
-        else:
-            if args[0] not in self.class_dict.keys():
-                raise TypeError("** class doesn't exist **")
-        #BaseModel()
+                #new_object = objType()
+                print('{}'.format(new_instance))
+                new_instance.save()
+            else:
+                print("** class doesn't exist **")
                 
     def do_show(self, line):
         """ prints the string representation based on ID"""
         args = line.split()
-        if args[0] in self.class_dict.keys():
-            print_class = self.class_dict[args[0]]
-            print('{}'.format(print_class))
+        if len(args) > 0:
+            if args[0] in self.class_dict.keys():
+                if len(args) == 2 and args[1]:
+                    idNum = args[1]
+                    for key, value in storage.all().items():
+                        id_split = key.split('.')
+                        if idNum == id_split[1]:
+                            print('{}'.format(value))
+                            return
+                    print('** no instance found **')
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** class doesn't exist **")
+        else:
+            print('** class name missing **')
 
 
 
