@@ -109,11 +109,67 @@ class HBNBCommand(cmd.Cmd):
                 return
             list_output = []
             """ Create an empty List to hold all strings of BaseModel"""
-            for key, value in storage.all().items():
+            for _, value in storage.all().items():
                 list_output.append(str(value))
             print(list_output)
             
+    def do_update(self, line):
+        """ command to update an attribute """
+        args = line.split(' ')
+        if len(args) != 4:
+            if len(args) == 0:
+                for i in args:
+                    print(i)
+                print("** class name missing **")
+                return
+            elif len(args) == 1:
+                print('** instance id missing **')
+                return
+            elif len(args) == 2:
+                print('** attribute name missing **')
+                return
+            elif len(args) == 3:
+                print('** value missing **')
+            else:
+                print("** class name missing **")
+                return
+        print(args[0])
+        if args[0] in self.class_dict.keys():
+            idNum = args[1]
+            for key, value in storage.all().items():
+                id_split = key.split('.')
+                if idNum == id_split[1]:
+                    if hasattr(value, args[2]):
+                        """check if attribute exists"""
+                        try:
+                            setattr(value, args[2], args[3])
+                            storage.save()
+                            return
+                        except Exception as e:
+                            print('Custom Error here')
+                            return
+            print("** no instance found **")
+        else:
+            print("** class doesn't exist **")
+            
+    """       
+    @staticmethod
+    def _get_instance_by_id(clsName, idNum):
+        instances = [x for x in ObjectTracker._instances if isinstance(x, BaseModel)]
+        for obj in instances:
+            if type(obj).__name__ == clsName and str(obj.id) == idNum:
+    """
+            
+    @staticmethod
+    def count_instances(class_name):
+        """ static method to count the number of instances of a class"""
+        count = 0
         
+        for _, value in storage.all().items():
+            if type(value).__name__ == class_name:
+                """ check if is an instance of the class and add to count"""
+                count += 1
+        return count
 
 
 
