@@ -2,10 +2,10 @@
 """ Module to create a persistent file storage system"""
 
 
-#import models.base_model import BaseModel
 import datetime
 import json
 import uuid
+
 
 class FileStorage:
     """
@@ -19,7 +19,7 @@ class FileStorage:
     def all(self):
         """ returns the dictionary rep of __objects"""
         return self.__objects
-    
+
     def new(self, obj):
         """ method to set __objects"""
         key = '{}.{}'.format(obj.__class__.__name__, obj.id)
@@ -33,7 +33,7 @@ class FileStorage:
             new_objects[key] = value.to_dict()
         with open(self.__file_path, 'w') as file:
             json.dump(new_objects, file, default=str)
-    
+
     """ refactror this entire reload method using another logic"""
     def reload(self):
         """ deserializes a json file to __objects"""
@@ -44,13 +44,11 @@ class FileStorage:
                     class_name, obj_id = key.split('.')
                     """ import Base Model here """
                     from models.base_model import BaseModel
-                    """
                     from models.amenity import Amenity
                     from models.city import City
                     from models.place import Place
                     from models.review import Review
                     from models.state import State
-                    """
                     from models.user import User
                     """imports done"""
                     obj_instance = eval(class_name)(**value)
