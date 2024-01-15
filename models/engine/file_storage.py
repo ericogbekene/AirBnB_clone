@@ -18,18 +18,18 @@ class FileStorage:
     """ Public instance methods"""
     def all(self):
         """ returns the dictionary rep of __objects"""
-        return self.__objects
+        return self.__class__.__objects
 
     def new(self, obj):
         """ method to set __objects"""
         key = '{}.{}'.format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        self.__class__.__objects[key] = obj
         """ confirm the key/value assignment"""
 
     def save(self):
         """ save a file to a Json Object"""
         new_objects = {}
-        for key, value in self.__objects.items():
+        for key, value in self.__class__.__objects.items():
             new_objects[key] = value.to_dict()
         with open(self.__file_path, 'w') as file:
             json.dump(new_objects, file, default=str)
@@ -38,7 +38,7 @@ class FileStorage:
     def reload(self):
         """ deserializes a json file to __objects"""
         try:
-            with open(self.__file_path, "r") as file:
+            with open(self.__class__.__file_path, "r") as file:
                 data = json.load(file)
                 for key, value in data.items():
                     class_name, obj_id = key.split('.')
@@ -52,7 +52,7 @@ class FileStorage:
                     from models.user import User
                     """imports done"""
                     obj_instance = eval(class_name)(**value)
-                    self.__objects[key] = obj_instance
-            return self.__objects
+                    self.__class__.__objects[key] = obj_instance
+            return self.__class__.__objects
         except (FileNotFoundError, IOError):
             return {}
