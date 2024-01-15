@@ -29,6 +29,87 @@ manage the objects of our project:
 - Update attributes of an object
 - Destroy an object
 
+ # HBNB console
+
+This is a simple console for the AirBnB clone project. It allows you to create, show, and delete objects in the database.
+
+## Installation
+
+To install the console, simply clone the AirBnB clone repository and run the following command:
+
+```
+pip install -r requirements.txt
+```
+
+## Usage
+
+To start the console, simply run the following command:
+
+```
+python3 console.py
+```
+
+This will open the console and you will be able to start interacting with the database.
+
+## Commands
+
+The console supports the following commands:
+
+* **create**: Creates a new object in the database.
+* **show**: Prints the string representation of an object in the database.
+* **destroy**: Deletes an object from the database.
+* **quit**: Quits the console.
+
+## Creating an object
+
+To create a new object, simply use the `create` command followed by the name of the class and the name of the object. For example, to create a new user, you would use the following command:
+
+```
+create User username
+```
+
+This will create a new user object with the username `username`.
+
+## Showing an object
+
+To show an object, simply use the `show` command followed by the name of the class and the ID of the object. For example, to show the user with the ID `1`, you would use the following command:
+
+```
+show User 1
+```
+
+This will print the string representation of the user with the ID `1`.
+
+## Deleting an object
+
+To delete an object, simply use the `destroy` command followed by the name of the class and the ID of the object. For example, to delete the user with the ID `1`, you would use the following command:
+
+```
+delete User 1
+```
+
+This will delete the user with the ID `1` from the database.
+
+## Quitting the console
+
+To quit the console, simply use the `quit` command.
+
+## Example
+
+Here is an example of how to use the console:
+
+```
+(hbnb) create User username
+(hbnb) show User 1
+(hbnb) delete User 1
+(hbnb) quit
+```
+
+This will create a new user with the username `username`, show the user with the ID `1`, delete the user with the ID `1`, and then quit the console.
+
+## Conclusion
+
+
 # Requirements
 ### Python Scripts
 
