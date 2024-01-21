@@ -3,6 +3,7 @@
 
 
 import cmd
+import shlex
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.city import City
@@ -16,7 +17,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """ class to enter cmd console """
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     class_dict = {
         'BaseModel': BaseModel,
@@ -110,7 +111,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """ command to update an attribute """
-        args = line.split(' ')
+        #args = line.split(' ')
+        args = shlex.split(line)
         if len(args) != 4:
             if len(args) == 0:
                 print("** class name missing **")
@@ -130,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             obj_id = args[1]
             for obj in storage.all().values():
-                id_split = key.split('.')
+                # id_split = key.split('.')
                 if obj.id == obj_id and obj.__class__.__name__ == class_name:
                     try:
                         setattr(obj, args[2], args[3])
