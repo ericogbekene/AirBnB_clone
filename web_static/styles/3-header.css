@@ -5,21 +5,6 @@ header{
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
-}
-
-.logo-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-#logo-img{
-    height: 200px;
-    width: 200px;
-    border: 6px solid white;
-    border-radius: 7px;
-    background-color: blue;
-    /* background-image: url("../images/HBNBlogo.png"); */
-    background-size: cover;
-    margin: 0px auto;
+    background-image: url("../images/HBNBlogo.png");
+    background-repeat: no-repeat;
 }
